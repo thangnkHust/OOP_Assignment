@@ -10,7 +10,7 @@ public class DayOfAMonth {
 				"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
 		};
 		String abbreviation[] = {
-				"Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."
+				"Jan.", "Feb.", "Mar.", "Apr.", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
 		};
 		String in3Letter[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
