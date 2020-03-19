@@ -127,7 +127,11 @@ public class MyDate {
 	
 	// Print current date to the screen
 	public void print() {
-		System.out.printf("Ngay/Thang/Nam: %d/%d/%d %n", getDay(), getMonth(), getYear());
+		if(day == 0 || month == 0 || year == 0) {
+			System.out.println("Invalid Day/Month/Year");
+		}else {
+			System.out.printf("Ngay/Thang/Nam: %d/%d/%d %n", getDay(), getMonth(), getYear());
+		}
 	}
 	
 	
