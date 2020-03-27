@@ -20,7 +20,7 @@ public class DateTest {
 		
 //		Test accept method from MyDate Class
 		System.out.println("Test Case 4: ");
-		MyDate testDate4 = new MyDate("");
+		MyDate testDate4 = new MyDate(MyDate.accept());
 		testDate4.print();
 		
 		System.exit(0);

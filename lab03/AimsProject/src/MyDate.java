@@ -86,12 +86,8 @@ public class MyDate {
 	}
 	
 	// Constructor with date(string) -> convert to date
-	// If dataInString is empty string then Enter from keyboard
 	public MyDate(String dateInString) {
 		super();
-		if (dateInString == "") {
-			dateInString = accept();
-		}
 		// Set a new format of date
 		SimpleDateFormat formatter = new SimpleDateFormat("MMM dd yyyy");
 		try {
@@ -107,7 +103,8 @@ public class MyDate {
 		}
 	}
 	
-	public String accept() {
+	// static fixed value in every object when constructing
+	public static String accept() {
 		Scanner sc = new Scanner(System.in);
 		System.out.printf("Enter date(example:'July 15 1999'): ");
 		String dateInString = sc.nextLine();
