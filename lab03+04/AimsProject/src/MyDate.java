@@ -179,7 +179,7 @@ public class MyDate {
 		int result = 0;
 		
 		// if input have "thousand" or "hundred" --> two thousand twenty
-		if(input.lastIndexOf("thousand") != -1 || input.lastIndexOf("hundred") != -1) {
+		if(input.lastIndexOf("thousand") != -1 && input.lastIndexOf("hundred") != -1) {
 			result = convertWordToNumber1(input);
 		}else {
 			// else --> twenty twenty
@@ -324,8 +324,8 @@ public class MyDate {
 	
 	// type 2
 	private int convertWordToNumber2(String input) {
-		boolean isValidInput = true;
-	    int result = 0;
+//		boolean isValidInput = true;
+//	    int result = 0;
 	    int finalResult = 0;
 	    List<String> allowedStrings = Arrays.asList
 	    (
@@ -339,150 +339,130 @@ public class MyDate {
 	    {
 	        input = input.toLowerCase().replaceAll(" and", " ");
 	        String[] splittedParts = input.trim().split("\\s+");
-
-	        for(String str : splittedParts)
-	        {
-	            if(!allowedStrings.contains(str))
-	            {
-	                isValidInput = false;
-	                System.out.println("Invalid word found : "+str);
-	                break;
-	            }
-	        }
-	        if(isValidInput)
-	        {	
-	        	switch(splittedParts[0]) {
-	        		case "ten":
-	        			finalResult = 1000;
-	        			break;
-	        		case "eleven":
-	        			finalResult = 1100;
-	        			break;
-	        		case "twelve":
-	        			finalResult = 1200;
-	        			break;
-	        		case "thirteen":
-	        			finalResult = 1300;
-	        			break;
-	        		case "fourteen":
-	        			finalResult = 1400;
-	        			break;
-	        		case "fifteen":
-	        			finalResult = 1500;
-	        			break;
-	        		case "sixteen":
-	        			finalResult = 1600;
-	        			break;
-	        		case "seventeen":
-	        			finalResult = 1700;
-	        			break;
-	        		case "eighteen":
-	        			finalResult = 1800;
-	        			break;
-	        		case "nineteen":
-	        			finalResult = 1900;
-	        			break;
-	        		case "twenty":
-	        			finalResult = 2000;
-	        			break;
-	        		case "thirty":
-	        			finalResult = 3000;
-	        			break;
-	        		default:
-						throw new IllegalArgumentException("Unexpected value: " + splittedParts[0]);
-	        	}
-	        	
-	            for(int i = 1; i < splittedParts.length; i++)
-	            {	
-	            	String str = splittedParts[i];
-	                if(str.equalsIgnoreCase("one")) {
-	                    result += 1;
-	                }
-	                else if(str.equalsIgnoreCase("two")) {
-	                    result += 2;
-	                }
-	                else if(str.equalsIgnoreCase("three")) {
-	                    result += 3;
-	                }
-	                else if(str.equalsIgnoreCase("four")) {
-	                    result += 4;
-	                }
-	                else if(str.equalsIgnoreCase("five")) {
-	                    result += 5;
-	                }
-	                else if(str.equalsIgnoreCase("six")) {
-	                    result += 6;
-	                }
-	                else if(str.equalsIgnoreCase("seven")) {
-	                    result += 7;
-	                }
-	                else if(str.equalsIgnoreCase("eight")) {
-	                    result += 8;
-	                }
-	                else if(str.equalsIgnoreCase("nine")) {
-	                    result += 9;
-	                }
-	                else if(str.equalsIgnoreCase("ten")) {
-	                    result += 10;
-	                }
-	                else if(str.equalsIgnoreCase("eleven")) {
-	                    result += 11;
-	                }
-	                else if(str.equalsIgnoreCase("twelve")) {
-	                    result += 12;
-	                }
-	                else if(str.equalsIgnoreCase("thirteen")) {
-	                    result += 13;
-	                }
-	                else if(str.equalsIgnoreCase("fourteen")) {
-	                    result += 14;
-	                }
-	                else if(str.equalsIgnoreCase("fifteen")) {
-	                    result += 15;
-	                }
-	                else if(str.equalsIgnoreCase("sixteen")) {
-	                    result += 16;
-	                }
-	                else if(str.equalsIgnoreCase("seventeen")) {
-	                    result += 17;
-	                }
-	                else if(str.equalsIgnoreCase("eighteen")) {
-	                    result += 18;
-	                }
-	                else if(str.equalsIgnoreCase("nineteen")) {
-	                    result += 19;
-	                }
-	                else if(str.equalsIgnoreCase("twenty")) {
-	                    result += 20;
-	                }
-	                else if(str.equalsIgnoreCase("thirty")) {
-	                    result += 30;
-	                }
-	                else if(str.equalsIgnoreCase("forty")) {
-	                    result += 40;
-	                }
-	                else if(str.equalsIgnoreCase("fifty")) {
-	                    result += 50;
-	                }
-	                else if(str.equalsIgnoreCase("sixty")) {
-	                    result += 60;
-	                }
-	                else if(str.equalsIgnoreCase("seventy")) {
-	                    result += 70;
-	                }
-	                else if(str.equalsIgnoreCase("eighty")) {
-	                    result += 80;
-	                }
-	                else if(str.equalsIgnoreCase("ninety")) {
-	                    result += 90;
-	                }
-	            }
-
-	            finalResult += result;
-	            result=0;
-	        }
+	        int arrLenght = splittedParts.length;
+	        if (arrLenght == 1) {
+				finalResult +=  (wordtonum(splittedParts[0]));
+			} else if (arrLenght == 2) {
+				String strNumb = "";
+				for (int i = 0; i < arrLenght; i++) {
+					strNumb += (wordtonum(splittedParts[i]));
+				}
+				finalResult = Integer.parseInt(strNumb);
+			}else {
+				String strNumb = "";
+				for (int i = 0; i < arrLenght; i++) {
+					if ((wordtonum(splittedParts[i]) > 19 && wordtonum(splittedParts[i])< 100) && wordtonum(splittedParts[i+1]) <10)  {
+						int sum = wordtonum(splittedParts[i]) +  wordtonum(splittedParts[i+1]);
+						i++;
+						strNumb += sum;
+					}
+					else {
+						strNumb += (wordtonum(splittedParts[i]));
+					}
+					finalResult = Integer.parseInt(strNumb);
+				}
+			}
+	        
 	    }
 	    return finalResult;
+	}
+	
+	public int wordtonum(String word) {
+		String num = null;
+		switch (word) {
+		case "one":
+			num = "1";
+			break;
+		case "two":
+			num = "2";
+			break;
+		case "three":
+			num = "3";
+			break;
+		case "four":
+			num = "4";
+			break;
+		case "five":
+			num = "5";
+			break;
+		case "six":
+			num = "6";
+			break;
+		case "seven":
+			num = "7";
+			break;
+		case "eight":
+			num = "8";
+			break;
+		case "nine":
+			num = "9";
+			break;
+		case "ten":
+			num = "10";
+			break;
+		case "eleven":
+			num = "11";
+			break;
+		case "twelve":
+			num = "12";
+			break;
+		case "thirteen":
+			num = "13";
+			break;
+		case "fourteen":
+			num = "14";
+			break;
+		case "fifteen":
+			num = "15";
+			break;
+		case "sixteen":
+			num = "16";
+			break;
+		case "seventeen":
+			num = "17";
+			break;
+		case "eighteen":
+			num = "18";
+			break;
+		case "nineteen":
+			num = "19";
+			break;
+		case "twenty":
+			num = "20";
+			break;
+		case "thirty":
+			num = "30";
+			break;
+		case "forty":
+			num = "40";
+			break;
+		case "fifty":
+			num = "50";
+			break;
+		case "sixty":
+			num = "60";
+			break;
+		case "seventy":
+			num = "70";
+			break;
+		case "eighty":
+			num = "80";
+			break;
+		case "ninety":
+			num = "90";
+			break;
+		case "hundred":
+			num = "100";
+			break;
+		case "thousand":
+			num = "1000";
+			break;
+		/*
+		 * default: num = "Invalid month"; break;
+		 */
+		}
+		int result = Integer.parseInt(num);
+		return result;
 	}
 	
 	
