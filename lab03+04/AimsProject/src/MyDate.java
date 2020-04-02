@@ -179,7 +179,7 @@ public class MyDate {
 		int result = 0;
 		
 		// if input have "thousand" or "hundred" --> two thousand twenty
-		if(input.lastIndexOf("thousand") != -1 && input.lastIndexOf("hundred") != -1) {
+		if(input.lastIndexOf("thousand") != -1 || input.lastIndexOf("hundred") != -1) {
 			result = convertWordToNumber1(input);
 		}else {
 			// else --> twenty twenty

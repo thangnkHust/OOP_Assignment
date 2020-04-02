@@ -25,7 +25,7 @@ public class DateTest {
 		
 //		Test Constructor with 3 parameter string (day, month, year)
 		System.out.println("Test Case 5: ");
-		MyDate testDate5 = new MyDate("second", "january", "twenty ninety one ");
+		MyDate testDate5 = new MyDate("second", "january", "one hundred");
 		testDate5.print();
 		
 		
