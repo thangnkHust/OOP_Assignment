@@ -2,7 +2,8 @@ package hust.soict.hedspi.aims;
 
 import java.util.Scanner;
 
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.order.Order;
 
 public class DiskTest {
@@ -38,32 +39,32 @@ public class DiskTest {
 		
 		// Create order
 		Order anOrder = Order.createdOrder();
-		anOrder.addDigitalVideoDisc(dvd1, dvd2, dvd3, dvd4, dvd5);
+		anOrder.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5);
 		
 		// test search title
-		int mark = 0;
-		Scanner sc = new Scanner(System.in);
-		System.out.println("======Nhap title muon tim kiem: ========");
-		String title = sc.nextLine();
-		System.out.println("======Ket qua tim kiem: =======");
-		for(DigitalVideoDisc disc: anOrder.itemsOrdered) {
-			if(disc != null && disc.search(title)) {
-				mark = 1;
-				System.out.println(disc.getTitle());
-			}
-		}
-		if(mark == 0) {
-			System.out.println("Khong co ket qua tim kiem");
-		}
+//		int mark = 0;
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("======Nhap title muon tim kiem: ========");
+//		String title = sc.nextLine();
+//		System.out.println("======Ket qua tim kiem: =======");
+//		for(DigitalVideoDisc disc: anOrder.itemsOrdered) {
+//			if(disc != null && disc.search(title)) {
+//				mark = 1;
+//				System.out.println(disc.getTitle());
+//			}
+//		}
+//		if(mark == 0) {
+//			System.out.println("Khong co ket qua tim kiem");
+//		}
 		
 		System.out.println("=========================================");
 		// total cost before get lucky
 		System.out.printf("Tong tien truoc khi giam gia: %f %n", anOrder.totalCost());
-		DigitalVideoDisc luckyItem = anOrder.getALuckyItem();
+		Media luckyItem = anOrder.getALuckyItem();
 		System.out.printf("San pham may man la: %s %n", luckyItem.getTitle());
 		// total cost after get lucky
 		System.out.printf("Tong tien sau khi giam gia: %f %n", anOrder.totalCost());
-		sc.close();
+//		sc.close();
 	}
 
 }

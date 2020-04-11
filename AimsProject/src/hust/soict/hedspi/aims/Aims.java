@@ -1,6 +1,6 @@
 package hust.soict.hedspi.aims;
 
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.order.Order;
 
 public class Aims {
@@ -16,7 +16,7 @@ public class Aims {
 		dvd1.setCost(19.95f); 
 		dvd1.setLength(87);
 		dvd1.setDirector("Roger Allers");
-		anOrder.addDigitalVideoDisc(dvd1);
+		anOrder.addMedia(dvd1);
 		
 		// dvd2
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
@@ -24,7 +24,7 @@ public class Aims {
 		dvd2.setCost(24.95f);
 		dvd2.setDirector("George Lucas");
 		dvd2.setLength(124);
-		anOrder.addDigitalVideoDisc(dvd2);
+		anOrder.addMedia(dvd2);
 		
 		// dvd3
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin");
@@ -32,7 +32,7 @@ public class Aims {
 		dvd3.setCost(18.99f);
 		dvd3.setDirector("John Musker");
 		dvd3.setLength(90);
-		anOrder.addDigitalVideoDisc(dvd3);
+		anOrder.addMedia(dvd3);
 		
 		// dvd4
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("test1", "test1", "author 1", 123, 15.5f);
