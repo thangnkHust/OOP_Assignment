@@ -35,10 +35,12 @@ public class Order {
 	
 	public void addMedia(Media media) {
 		if(itemsOrdered.contains(media)) {
-			System.out.println("The media with title: " + media.getTitle() + " is existed!");
-		}else {
+			System.err.println("The media with title: " + media.getTitle() + " is existed!");
+		}else if(checkId(media.getId())) {
+			System.err.println("The media with id: " + media.getId() + " is existed!");
+		}else{
 			itemsOrdered.add(media);
-			System.out.println("The media with title: " + media.getTitle() + " has been added");
+			System.out.println("***The media with title: " + media.getTitle() + " has been added");
 		}
 	}
 	
@@ -51,16 +53,26 @@ public class Order {
 	public void removeMedia(Media media) {
 		if(itemsOrdered.contains(media)) {
 			itemsOrdered.remove(media);
+			System.out.println("***Media with ID: " + media.getId() + " has been deleted!");
 		}else {
-			System.out.println("Can't not find!");
+			System.err.println("Can't not find!");
 		}
 	}
 	
-//	public void addDigitalVideoDisc(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2) {
-//		addDigitalVideoDisc(dvd1);
-//		addDigitalVideoDisc(dvd2);
-//	}
-//	
+	public void removeMedia(String id) {
+		int mark =0;
+		for(Media media: itemsOrdered) {
+			if(media.getId().equalsIgnoreCase(id)) {
+				removeMedia(media);
+				mark = 1;
+				break;
+			}
+		}
+		if(mark == 0) {
+			System.err.println("Can't find id");
+		}
+	}
+	
 	public float totalCost() {
 		float total = 0.0f;
 		for(int i = 0; i < itemsOrdered.size(); i++) {
@@ -69,15 +81,26 @@ public class Order {
 		return total;
 	}
 
-//	public void printListOfOrdered() {
-//		System.out.println("********************************ORDER " + nbOrders + "******************************");
-//		dateOrdered.print();
-//		for(int i = 0; i < qtyOrdered; i++) {
-//			System.out.println(i+1 + ". DVD - " + itemsOrdered[i].getTitle() + " - " + itemsOrdered[i].getCategory() + " - " + itemsOrdered[i].getDirector() + " - " + itemsOrdered[i].getLength() + ": " + itemsOrdered[i].getCost() + "$");
-//		}
-//		System.out.println("Total cost: " + totalCost());
-//		System.out.println("*******************************************************************");
-//	}
+	public void printListOfOrdered() {
+		System.out.println("********************************ORDER******************************");
+		dateOrdered.print();
+		int i = 1;
+		for(Media media: itemsOrdered) {
+			System.out.println(i + ". Media - " + media.getId() + " - " + media.getTitle() + " - " + media.getCategory() +  ": " + media.getCost() + "$");
+			i++;
+		}
+		System.out.println("Total cost: " + totalCost());
+		System.out.println("*******************************************************************");
+	}
+	
+	public boolean checkId(String id) {
+		for(Media media: itemsOrdered) {
+			if(media.getId().equalsIgnoreCase(id)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public Media getALuckyItem() {
 		double rand = Math.random();

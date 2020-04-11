@@ -5,8 +5,34 @@ import java.util.ArrayList;
 public class Book extends Media{
 	private ArrayList<String> authors = new ArrayList<String>();
 	
-	public Book() {
-		// TODO Auto-generated constructor stub
+	public Book(String title) {
+		super(title);
+	}
+	
+	public Book(String title, String category) {
+		super(title, category);
+	}
+	
+	public Book(String title, String category, float cost) {
+		super(title, category, cost);
+	}
+	
+	public Book(String title, String category, ArrayList<String> authors) {
+		super(title, category);
+		if(authors.size() != 0) {
+			this.authors = authors;
+		}else {
+			System.out.println("Authors list is empty!");
+		}
+	}
+	
+	public Book(String title, String category, float cost, ArrayList<String> authors) {
+		super(title, category, cost);
+		if(authors.size() != 0) {
+			this.authors = authors;
+		}else {
+			System.out.println("Authors list is empty!");
+		}
 	}
 	
 	public void addAuthor(String authorName){

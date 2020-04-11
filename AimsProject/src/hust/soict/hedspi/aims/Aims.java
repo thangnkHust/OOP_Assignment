@@ -1,5 +1,8 @@
 package hust.soict.hedspi.aims;
 
+import java.util.Scanner;
+
+import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.order.Order;
 
@@ -7,67 +10,125 @@ public class Aims {
 	
 	public static void main(String[] args) {
 		
-		// Init object order
-		Order anOrder = Order.createdOrder();
+		Scanner sc = new Scanner(System.in);
+		int selection;
+		int case1 = 0;
+		Order anOrder = null;
+		do {
+			showMenu();
+			selection = sc.nextInt();
+			switch (selection) {
+			case 1:
+				anOrder = Order.createdOrder();
+				System.out.println("***Creat new order successfully!");
+				case1 = 1;
+				break;
+			case 2:
+				if(case1 == 0) {
+					System.err.println("Hay nhap case 1!");
+					break;
+				}
+				int temp = 0;
+				String id, title, category, director;
+				int length;
+				float cost;
+				do {
+					showMenuMedia();
+					temp = sc.nextInt();
+					switch (temp) {
+					case 1:
+						sc.nextLine();
+						System.out.printf("\tNhap id: ");
+						id = sc.nextLine();
+						System.out.printf("\tNhap title: ");
+						title = sc.nextLine();
+						System.out.printf("\tNhap category: ");
+						category = sc.nextLine();
+						System.out.printf("\tNhap cost: ");
+						cost = sc.nextFloat();
+//						System.out.printf("\tNhap author: ");
+//						String author = sc.nextLine();
+						Book anBook = new Book(title, category, cost);
+						anBook.setId(id);
+						anOrder.addMedia(anBook);
+						break;
+					case 2:
+						sc.nextLine();
+						System.out.printf("\tNhap id: ");
+						id = sc.nextLine();
+						System.out.printf("\tNhap title: ");
+						title = sc.nextLine();
+						System.out.printf("\tNhap category: ");
+						category = sc.nextLine();
+						System.out.printf("\tNhap director: ");
+						director = sc.nextLine();
+						System.out.printf("\tNhap cost: ");
+						cost = sc.nextFloat();
+						System.out.printf("\tNhap length: ");
+						length = sc.nextInt();
+						DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, director, length, cost);
+						dvd.setId(id);
+						anOrder.addMedia(dvd);
+						break;
+					case 0:
+						System.out.println("Exit submenu!");
+						break;
+					default:
+//						throw new IllegalArgumentException("Unexpected value: " + temp);
+						System.err.println("Error input enter, again!");
+					}
+				} while (temp != 0);
+				break;
+			case 3:
+				if(case1 == 0) {
+					System.err.println("Hay nhap case 1!");
+					break;
+				}
+				sc.nextLine();
+				System.out.printf("Nhap id: ");
+				id = sc.nextLine();
+				anOrder.removeMedia(id);
+				break;
+			case 4:
+				if(case1 == 0) {
+					System.err.println("Hay nhap case 1!");
+					break;
+				}
+				anOrder.printListOfOrdered();
+				break;
+			case 0:
+				sc.close();
+				System.out.println("Bye!!!");
+				break;
+			default:
+				sc.close();
+//				throw new IllegalArgumentException("Unexpected value: " + selection);
+				System.err.println("Error input enter, again!");
+			}
+		} while (selection != 0);
 		
-		// dvd1
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King");
-		dvd1.setCategory("Animation");
-		dvd1.setCost(19.95f); 
-		dvd1.setLength(87);
-		dvd1.setDirector("Roger Allers");
-		anOrder.addMedia(dvd1);
-		
-		// dvd2
-		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
-		dvd2.setCategory("Science Fiction");
-		dvd2.setCost(24.95f);
-		dvd2.setDirector("George Lucas");
-		dvd2.setLength(124);
-		anOrder.addMedia(dvd2);
-		
-		// dvd3
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin");
-		dvd3.setCategory("Animation");
-		dvd3.setCost(18.99f);
-		dvd3.setDirector("John Musker");
-		dvd3.setLength(90);
-		anOrder.addMedia(dvd3);
-		
-		// dvd4
-		DigitalVideoDisc dvd4 = new DigitalVideoDisc("test1", "test1", "author 1", 123, 15.5f);
-		
-		// dvd5
-		DigitalVideoDisc dvd5 = new DigitalVideoDisc("test2", "test2", "author 2", 80, 19.5f);
-//		anOrder.removeDigitalVideoDisc(dvd3);
-		
-		DigitalVideoDisc [] lisDisc = {dvd1, dvd2, dvd3};
-//		for(DigitalVideoDisc dvd: lisDisc) {
-//			System.out.println(dvd.title);
-//		}
-//		lisDisc[0] = dvd1;
-//		lisDisc[1] = dvd2;
-//		lisDisc[2] = dvd3;
-		
-		anOrder.addDigitalVideoDisc(lisDisc);
-//		anOrder.addDigitalVideoDisc(dvd1, dvd2, dvd3);
-		
-		// Show items in anOrder
-		anOrder.printListOfOrdered();
-		
-		Order order2 = Order.createdOrder();
-		order2.addDigitalVideoDisc(dvd1, dvd3, dvd5);
-		order2.printListOfOrdered();
-		
-		Order order3 = Order.createdOrder();
-		order3.addDigitalVideoDisc(dvd1, dvd5, dvd2, dvd4);
-		order3.printListOfOrdered();
-		
-		Order order4 = Order.createdOrder();
-		order4.addDigitalVideoDisc(dvd1, dvd3);
-		order4.printListOfOrdered();
+	}
 	
-		
+	public static void showMenu() {
+		System.out.println("Order Management Application: "); 
+		System.out.println("--------------------------------"); 
+		System.out.println("1. Create new order"); 
+		System.out.println("2. Add item to the order"); 
+		System.out.println("3. Delete item by id"); 
+		System.out.println("4. Display the items list of order"); 
+		System.out.println("0. Exit"); 
+		System.out.println("--------------------------------"); 
+		System.out.println("Please choose a number: 0-1-2-3-4");
+	}
+	
+	public static void showMenuMedia() {
+		System.out.println("Select add Book or DVD "); 
+		System.out.println("--------------------------------"); 
+		System.out.println("1. Book"); 
+		System.out.println("2. DVD"); 
+		System.out.println("0. Exit"); 
+		System.out.println("--------------------------------"); 
+		System.out.println("Please choose a number: 0-1-2");
 	}
 
 }
