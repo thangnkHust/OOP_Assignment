@@ -11,31 +11,25 @@ public class DiskTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		// dvd1
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King");
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("a123", "The Lion King", 87, 19.95f);
 		dvd1.setCategory("Animation");
-		dvd1.setCost(19.95f); 
-		dvd1.setLength(87);
 		dvd1.setDirector("Roger Allers");
 		
 		// dvd2
-		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("a124", "Star Wars", 124, 24.95f);
 		dvd2.setCategory("Science Fiction");
-		dvd2.setCost(24.95f);
 		dvd2.setDirector("George Lucas");
-		dvd2.setLength(124);
 		
 		// dvd3
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin");
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("a125", "Hello world", 90, 18.99f);
 		dvd3.setCategory("Animation");
-		dvd3.setCost(18.99f);
 		dvd3.setDirector("John Musker");
-		dvd3.setLength(90);
 		
 		// dvd4
-		DigitalVideoDisc dvd4 = new DigitalVideoDisc("test1", "test1", "author 1", 123, 15.5f);
+		DigitalVideoDisc dvd4 = new DigitalVideoDisc("a126", "test1", "test1", 123, 15.5f);
 		
 		// dvd5
-		DigitalVideoDisc dvd5 = new DigitalVideoDisc("test2", "test2", "author 2", 80, 19.5f);
+		DigitalVideoDisc dvd5 = new DigitalVideoDisc("a127", "test2", "test2", 80, 19.5f);
 		
 		// Create order
 		Order anOrder = Order.createdOrder();
@@ -47,7 +41,7 @@ public class DiskTest {
 //		System.out.println("======Nhap title muon tim kiem: ========");
 //		String title = sc.nextLine();
 //		System.out.println("======Ket qua tim kiem: =======");
-//		for(DigitalVideoDisc disc: anOrder.itemsOrdered) {
+//		for(Media disc: anOrder.itemsOrdered) {
 //			if(disc != null && disc.search(title)) {
 //				mark = 1;
 //				System.out.println(disc.getTitle());

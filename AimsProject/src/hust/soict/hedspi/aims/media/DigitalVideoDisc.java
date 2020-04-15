@@ -16,22 +16,13 @@ public class DigitalVideoDisc extends Media{
 		this.length = length;
 	}
 	// Constructor by title
-	public DigitalVideoDisc(String title) {
-		super(title);
+	public DigitalVideoDisc(String id, String title, int length, float cost) {
+		super(id, title, cost);
+		this.length = length;
 	}
 	
-	public DigitalVideoDisc(String title, String category) {
-		super(title, category);
-	}
-	
-	public DigitalVideoDisc(String title, String category, String director) {
-		super(title, category);
-		this.director = director;
-	}
-	
-	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-		super(title, category, cost);
-		this.director = director;
+	public DigitalVideoDisc(String id, String title, String category, int length, float cost) {
+		super(id, title, category, cost);
 		this.length = length;
 	}
 	

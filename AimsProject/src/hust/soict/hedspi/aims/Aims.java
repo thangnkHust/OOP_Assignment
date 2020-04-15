@@ -1,5 +1,6 @@
 package hust.soict.hedspi.aims;
 
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 import hust.soict.hedspi.aims.media.Book;
@@ -46,10 +47,12 @@ public class Aims {
 						category = sc.nextLine();
 						System.out.printf("\tNhap cost: ");
 						cost = sc.nextFloat();
-//						System.out.printf("\tNhap author: ");
+						System.out.printf("\tNhap author: ");
+						// Add author
 //						String author = sc.nextLine();
-						Book anBook = new Book(title, category, cost);
-						anBook.setId(id);
+//						ArrayList<String> authorsList = new ArrayList<String>();
+//						authorsList.add(author);
+						Book anBook = new Book(id, title, category, cost);
 						anOrder.addMedia(anBook);
 						break;
 					case 2:
@@ -66,15 +69,14 @@ public class Aims {
 						cost = sc.nextFloat();
 						System.out.printf("\tNhap length: ");
 						length = sc.nextInt();
-						DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, director, length, cost);
-						dvd.setId(id);
+						DigitalVideoDisc dvd = new DigitalVideoDisc(id, title, category, length, cost);
+						dvd.setDirector(director);
 						anOrder.addMedia(dvd);
 						break;
 					case 0:
 						System.out.println("Exit submenu!");
 						break;
 					default:
-//						throw new IllegalArgumentException("Unexpected value: " + temp);
 						System.err.println("Error input enter, again!");
 					}
 				} while (temp != 0);
@@ -94,7 +96,11 @@ public class Aims {
 					System.err.println("Hay nhap case 1!");
 					break;
 				}
-				anOrder.printListOfOrdered();
+				if(anOrder.itemsOrdered.isEmpty()) {
+					System.err.println("List of Order is empty!");
+				}else {
+					anOrder.printListOfOrdered();
+				}
 				break;
 			case 0:
 				sc.close();
@@ -102,13 +108,13 @@ public class Aims {
 				break;
 			default:
 				sc.close();
-//				throw new IllegalArgumentException("Unexpected value: " + selection);
 				System.err.println("Error input enter, again!");
 			}
 		} while (selection != 0);
 		
 	}
 	
+	// Maintain menu
 	public static void showMenu() {
 		System.out.println("Order Management Application: "); 
 		System.out.println("--------------------------------"); 
@@ -121,6 +127,7 @@ public class Aims {
 		System.out.println("Please choose a number: 0-1-2-3-4");
 	}
 	
+	// Menu select Book or DVD
 	public static void showMenuMedia() {
 		System.out.println("Select add Book or DVD "); 
 		System.out.println("--------------------------------"); 
