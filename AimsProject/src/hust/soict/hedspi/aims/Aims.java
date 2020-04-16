@@ -107,7 +107,7 @@ public class Aims {
 				System.out.println("Bye!!!");
 				break;
 			default:
-				sc.close();
+//				sc.close();
 				System.err.println("Error input enter, again!");
 			}
 		} while (selection != 0);
