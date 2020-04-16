@@ -103,7 +103,7 @@ public class Aims {
 				}
 				break;
 			case 0:
-				sc.close();
+				//sc.close();
 				System.out.println("Bye!!!");
 				break;
 			default:
