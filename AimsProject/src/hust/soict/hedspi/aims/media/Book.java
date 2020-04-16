@@ -40,9 +40,9 @@ public class Book extends Media{
 	
 	public void removeAuthor(String authorName) {
 		if(authors.contains(authorName)) {
-			System.out.println("Don't exist author name");
-		}else {
 			authors.remove(authorName);
+		}else {
+			System.out.println("Don't exist author name");
 		}
 	}
 
