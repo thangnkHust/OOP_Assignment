@@ -2,9 +2,10 @@ package hust.soict.hedspi.aims.order;
 
 import java.util.ArrayList;
 
-import hust.soict.hedspi.aims.media.Book;
-import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Media;
+import hust.soict.hedspi.aims.media.book.Book;
+import hust.soict.hedspi.aims.media.disc.CompactDisc;
+import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
 import hust.soict.hedspi.aims.utils.MyDate;
 
 public class Order {
@@ -94,6 +95,8 @@ public class Order {
 				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", i, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof DigitalVideoDisc) {
 				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", i, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+			}else if(media instanceof CompactDisc) {
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", i, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}
 			i++;
 		}

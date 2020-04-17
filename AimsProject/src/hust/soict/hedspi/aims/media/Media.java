@@ -14,25 +14,13 @@ public abstract class Media {
 		return title;
 	}
 
-//	public void setTitle(String title) {
-//		this.title = title;
-//	}
-
 	public String getCategory() {
 		return category;
 	}
 
-//	public void setCategory(String category) {
-//		this.category = category;
-//	}
-
 	public float getCost() {
 		return cost;
 	}
-
-//	public void setCost(float cost) {
-//		this.cost = cost;
-//	}
 	
 	public Media(String id, String title, float cost) {
 		this.id = id;

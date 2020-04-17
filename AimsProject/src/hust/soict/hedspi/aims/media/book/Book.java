@@ -1,6 +1,8 @@
-package hust.soict.hedspi.aims.media;
+package hust.soict.hedspi.aims.media.book;
 
 import java.util.ArrayList;
+
+import hust.soict.hedspi.aims.media.Media;
 
 public class Book extends Media{
 	private ArrayList<String> authors = new ArrayList<String>();
@@ -31,19 +33,21 @@ public class Book extends Media{
 	}
 	
 	public void addAuthor(String authorName){
-		if(authors.contains(authorName)) {
-			System.out.println("Exist author name");
-		}else {
-			authors.add(authorName);
+		for(String author: authors) {
+			if(author.equalsIgnoreCase(authorName))
+				System.err.println("Exist author name");
+				return;
 		}
+		authors.add(authorName);
 	}
 	
 	public void removeAuthor(String authorName) {
-		if(authors.contains(authorName)) {
-			authors.remove(authorName);
-		}else {
-			System.out.println("Don't exist author name");
+		for(String author: authors) {
+			if(author.equalsIgnoreCase(authorName))
+				authors.remove(author);
+				return;
 		}
+		System.err.println("Don't exist author name");
 	}
 
 }

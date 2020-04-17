@@ -1,15 +1,15 @@
 package hust.soict.hedspi.test.disc;
-import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
 
 public class TestPassingParameter {
 
 	public static void main(String[] args) {
-		DigitalVideoDisc jungleDVD = new DigitalVideoDisc("a123", "Jungle", 10f, 123);
-		DigitalVideoDisc cinderellaDVD = new DigitalVideoDisc("a124", "Cinderella", 12.3f, 124);
-		swap(jungleDVD, cinderellaDVD);
+		DigitalVideoDisc jungleDVD = new DigitalVideoDisc("a123", "Jungle", 123, 10f);
+		DigitalVideoDisc cinderellaDVD = new DigitalVideoDisc("a124", "Cinderella", 124, 12.3f);
+//		swap(jungleDVD, cinderellaDVD);
 		System.out.println("jungle DVD title: " + jungleDVD.getTitle());
 		System.out.println("cinderella DVD title: " + cinderellaDVD.getTitle());
-		changeTitle(jungleDVD, cinderellaDVD.getTitle());
+//		changeTitle(jungleDVD, cinderellaDVD.getTitle());
 		System.out.println("jungle DVD title: " + jungleDVD.getTitle());
 	}
 	
