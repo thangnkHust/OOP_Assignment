@@ -70,7 +70,7 @@ public class Aims {
 						System.out.printf("\tNhap length: ");
 						length = sc.nextInt();
 						DigitalVideoDisc dvd = new DigitalVideoDisc(id, title, category, length, cost);
-						dvd.setDirector(director);
+//						dvd.setDirector(director);
 						anOrder.addMedia(dvd);
 						break;
 					case 0:

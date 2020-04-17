@@ -12,18 +12,18 @@ public class DiskTest {
 		// TODO Auto-generated method stub
 		// dvd1
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("a123", "The Lion King", 87, 19.95f);
-		dvd1.setCategory("Animation");
-		dvd1.setDirector("Roger Allers");
-		
+//		dvd1.setCategory("Animation");
+//		dvd1.setDirector("Roger Allers");
+//		
 		// dvd2
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("a124", "Star Wars", 124, 24.95f);
-		dvd2.setCategory("Science Fiction");
-		dvd2.setDirector("George Lucas");
+//		dvd2.setCategory("Science Fiction");
+//		dvd2.setDirector("George Lucas");
 		
 		// dvd3
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("a125", "Hello world", 90, 18.99f);
-		dvd3.setCategory("Animation");
-		dvd3.setDirector("John Musker");
+//		dvd3.setCategory("Animation");
+//		dvd3.setDirector("John Musker");
 		
 		// dvd4
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("a126", "test1", "test1", 123, 15.5f);
@@ -54,8 +54,8 @@ public class DiskTest {
 		System.out.println("=========================================");
 		// total cost before get lucky
 		System.out.printf("Tong tien truoc khi giam gia: %f %n", anOrder.totalCost());
-		Media luckyItem = anOrder.getALuckyItem();
-		System.out.printf("San pham may man la: %s %n", luckyItem.getTitle());
+//		Media luckyItem = anOrder.getALuckyItem();
+//		System.out.printf("San pham may man la: %s %n", luckyItem.getTitle());
 		// total cost after get lucky
 		System.out.printf("Tong tien sau khi giam gia: %f %n", anOrder.totalCost());
 //		sc.close();
