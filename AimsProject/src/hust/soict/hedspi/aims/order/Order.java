@@ -28,6 +28,7 @@ public class Order {
 	
 	// call constructor 
 	public static Order createdOrder() {
+		System.out.println("thread order");
 		if(nbOrders < MAX_LIMITTED_ORDERS) {
 			Order objOrder = new Order();
 			return objOrder;

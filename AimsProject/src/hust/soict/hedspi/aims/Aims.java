@@ -8,10 +8,16 @@ import hust.soict.hedspi.aims.media.disc.CompactDisc;
 import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.disc.Track;
 import hust.soict.hedspi.aims.order.Order;
+import hust.soict.hedspi.aims.thread.MemoryDaemon;
 
 public class Aims {
 	
 	public static void main(String[] args) {
+		// Create new MemoryDaemon object
+		MemoryDaemon md = new MemoryDaemon();
+		Thread thread = new	Thread(md);
+		thread.setDaemon(true);
+		thread.start();
 		
 		Scanner sc = new Scanner(System.in);
 		int selection;
@@ -82,7 +88,6 @@ public class Aims {
 				System.err.println("Error input enter, again!");
 			}
 		} while (selection != 0);
-		
 	}
 
 	private static void removeMediaInOrder(Order anOrder) {
