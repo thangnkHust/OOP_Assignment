@@ -32,5 +32,12 @@ public abstract class Media {
 		this(id, title, cost);
 		this.category = category;
 	}
+	
+	public boolean equals(Object temp) {
+//		Media media = (Media)temp;
+		if(id.equalsIgnoreCase( ((Media)temp).id) )
+			return true;
+		return false;
+	}
 
 }

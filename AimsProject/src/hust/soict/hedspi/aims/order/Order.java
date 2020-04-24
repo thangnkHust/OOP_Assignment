@@ -1,6 +1,7 @@
 package hust.soict.hedspi.aims.order;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.book.Book;
@@ -37,12 +38,12 @@ public class Order {
 			return null;
 		}
 	}
-	
+//	else if(checkId(media.getId())) {
+//		System.err.println("The media with id: " + media.getId() + " is existed!");
+//	}
 	public void addMedia(Media media) {
 		if(itemsOrdered.contains(media)) {
 			System.err.println("The media with title: " + media.getTitle() + " is existed!");
-		}else if(checkId(media.getId())) {
-			System.err.println("The media with id: " + media.getId() + " is existed!");
 		}else{
 			itemsOrdered.add(media);
 			System.out.println("***The media with title: " + media.getTitle() + " has been added");
