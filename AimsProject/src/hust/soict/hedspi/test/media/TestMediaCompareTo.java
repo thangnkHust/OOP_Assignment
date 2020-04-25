@@ -14,47 +14,50 @@ public class TestMediaCompareTo {
 
 	public static void main(String[] args) {
 		java.util.Collection<Media> collection = new java.util.ArrayList<Media>();
-		//Enter from keyboard
-		Scanner sc = new Scanner(System.in);
-		int select;
-		do {
-			showMenu();
-			select = sc.nextInt();
-			switch(select) {
-			case 1:
-				addDvdToOrder(collection);
-				break;
-			case 2:
-				addCdToOrder(collection);
-				break;
-			case 3:
-				display(collection);
-				break;
-			case 0:
-				sc.close();
-				System.out.println("Bye!!!");
-				break;
-			default:
-				System.err.println("Error input enter, again!");
-				break;
-			}
-		} while (select != 0);
-		
+		// Enter from keyboard
+//		Scanner sc = new Scanner(System.in);
+//		int select;
+//		do {
+//			showMenu();
+//			select = sc.nextInt();
+//			switch(select) {
+//			case 1:
+//				addDvdToOrder(collection);
+//				break;
+//			case 2:
+//				addCdToOrder(collection);
+//				break;
+//			case 3:
+//				display(collection);
+//				break;
+//			case 0:
+//				sc.close();
+//				System.out.println("Bye!!!");
+//				break;
+//			default:
+//				System.err.println("Error input enter, again!");
+//				break;
+//			}
+//		} while (select != 0);
 		
 		// Data test
-//		DigitalVideoDisc dvd1 = new DigitalVideoDisc("a123", "adasdj", "film", 12, 128);
-//		DigitalVideoDisc dvd2 = new DigitalVideoDisc("a124", "jklasoid", "film",223, 30);
-//		DigitalVideoDisc dvd3 = new DigitalVideoDisc("a123", "biuad", "music", 22, 83);
-//		CompactDisc cd1 = new CompactDisc("a82u", "akljsd", "music", "jdjfwa", 123);
-//		CompactDisc cd2 = new CompactDisc("ljkasd", "kajsd", "music", "asad", 32);
-//		
-//		collection.add(dvd1);
-//		collection.add(cd1);
-//		collection.add(dvd2);
-//		collection.add(cd2);
-//		collection.add(dvd3);
-//		 
-//		display(collection);
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("a123", "adasdj", "film", 12, 128);
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("a124", "jklasoid", "film",223, 30);
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("a123", "biuad", "music", 22, 83);
+		CompactDisc cd1 = new CompactDisc("a82u", "akljsd", "music", "jdjfwa", 123);
+		CompactDisc cd2 = new CompactDisc("ljkasd", "kajsd", "music", "asad", 32);
+		Book b1 = new Book("acn", "alkjsd", 821);
+		Book b2 = new Book("ajd", "alkjsd", 123);
+		
+		collection.add(b2);
+		collection.add(dvd1);
+		collection.add(cd1);
+		collection.add(dvd2);
+		collection.add(cd2);
+		collection.add(dvd3);
+		collection.add(b1);
+		 
+		display(collection);
 		
 	}
 	
@@ -62,30 +65,34 @@ public class TestMediaCompareTo {
 		Iterator<Media> iterator = collection.iterator();
 		iterator = collection.iterator();
 		System.out.println("----------------------------------");
-		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s%n", "STT", "Type", "ID", "Title", "Category", "Total");
+		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-12s| %-5s | %-5s%n", "STT", "Type", "ID", "Title", "Category", "Total", "Number", "Length");
+		int i = 1;
 		while(iterator.hasNext()) {
 			Media media = iterator.next();
 			if(media instanceof Book) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", 1, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof DigitalVideoDisc) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", 1, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof CompactDisc) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", 1, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ | %-5s | %-5s%n", i, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost(), ((CompactDisc)media).getTracks().size(), ((CompactDisc) media).getLength());
 			}
+			i++;
 		}
 		java.util.Collections.sort((List<Media>)collection);
 		iterator = collection.iterator();
 		System.out.println("----------------------------------");
-		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s%n", "STT", "Type", "ID", "Title", "Category", "Total");
+		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-12s| %-5s | %-5s%n", "STT", "Type", "ID", "Title", "Category", "Total", "Number", "Length");
+		i = 1;
 		while(iterator.hasNext()) {
 			Media media = iterator.next();
 			if(media instanceof Book) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", 1, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof DigitalVideoDisc) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", 1, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof CompactDisc) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", 1, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ | %-5s | %-5s%n", i, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost(), ((CompactDisc)media).getTracks().size(), ((CompactDisc) media).getLength());
 			}
+			i++;
 		}
 		System.out.println("----------------------------------");
 	}

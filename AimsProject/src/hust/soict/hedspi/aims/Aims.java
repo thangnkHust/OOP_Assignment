@@ -14,10 +14,10 @@ public class Aims {
 	
 	public static void main(String[] args) {
 		// Create new MemoryDaemon object
-		MemoryDaemon md = new MemoryDaemon();
-		Thread thread = new	Thread(md);
-		thread.setDaemon(true);
-		thread.start();
+//		MemoryDaemon md = new MemoryDaemon();
+//		Thread thread = new	Thread(md);
+//		thread.setDaemon(true);
+//		thread.start();
 		
 		Scanner sc = new Scanner(System.in);
 		int selection;

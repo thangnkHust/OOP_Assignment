@@ -1,6 +1,7 @@
 package hust.soict.hedspi.aims.order;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import hust.soict.hedspi.aims.media.Media;
@@ -91,14 +92,29 @@ public class Order {
 		System.out.println("********************************ORDER******************************");
 		dateOrdered.print();
 		int i = 1;
-		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s%n", "STT", "Type", "ID", "Title", "Category", "Total");
+		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-12s| %-5s | %-5s%n", "STT", "Type", "ID", "Title", "Category", "Total", "Number", "Length");
 		for(Media media: itemsOrdered) {
 			if(media instanceof Book) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", i, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ | %n", i, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof DigitalVideoDisc) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", i, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
 			}else if(media instanceof CompactDisc) {
-				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$%n", i, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ | %-5s | %-5s%n", i, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost(), ((CompactDisc)media).getTracks().size(), ((CompactDisc) media).getLength());
+			}
+			i++;
+		}
+		System.out.println("Total cost: " + totalCost());
+		java.util.Collections.sort(itemsOrdered);
+		System.out.println("*******************************************************************");
+		i = 1;
+		System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-12s| %-5s | %-5s%n", "STT", "Type", "ID", "Title", "Category", "Total", "Number", "Length");
+		for(Media media: itemsOrdered) {
+			if(media instanceof Book) {
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "Book", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+			}else if(media instanceof DigitalVideoDisc) {
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ |%n", i, "DVD", media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+			}else if(media instanceof CompactDisc) {
+				System.out.printf("%-3s | %-6s | %-5s | %-15s | %-10s : %-10s$ | %-5s | %-5s%n", i, "CD", media.getId(), media.getTitle(), media.getCategory(), media.getCost(), ((CompactDisc)media).getTracks().size(), ((CompactDisc) media).getLength());
 			}
 			i++;
 		}
