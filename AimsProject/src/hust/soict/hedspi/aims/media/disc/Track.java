@@ -1,6 +1,6 @@
 package hust.soict.hedspi.aims.media.disc;
 
-public class Track implements Playable{
+public class Track implements Playable, Comparable<Track>{
 	private String title;
 	private int length;
 	
@@ -27,5 +27,13 @@ public class Track implements Playable{
 		if(title.equalsIgnoreCase(track.title) && length == track.length)
 			return true;
 		return false;
+	}
+	
+	public int compareTo(Track track) {
+		if(this.title.compareToIgnoreCase(track.title) < 0)
+			return -1;
+		else if(this.title.compareToIgnoreCase(track.title) == 0)
+			return 0;
+		else return 1;
 	}
 }

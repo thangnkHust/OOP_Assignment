@@ -1,6 +1,9 @@
 package hust.soict.hedspi.aims.media;
 
-public abstract class Media {
+import hust.soict.hedspi.aims.media.disc.CompactDisc;
+import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
+
+public abstract class Media implements Comparable<Media>{
 	protected String title;
 	protected String category;
 	protected float cost;
@@ -38,6 +41,15 @@ public abstract class Media {
 		if(id.equalsIgnoreCase( ((Media)temp).id) )
 			return true;
 		return false;
+	}
+	
+	public int compareTo(Media media) {
+		if (media instanceof DigitalVideoDisc) {
+			return -1;
+		}else if(media instanceof CompactDisc)
+			return 1;
+		else return 0;
+//		return this.category.compareTo(media.getCategory());
 	}
 
 }
