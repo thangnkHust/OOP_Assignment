@@ -47,6 +47,7 @@ public class Book extends Media{
 		}
 	}
 	
+	@Override
 	public String toString() {
 		String string = "";
 		string += "Id: " + super.id + "\n";
