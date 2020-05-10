@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+
+<GridPane hgap="25.0" prefHeight="201.0" prefWidth="397.0" vgap="15.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Label prefHeight="17.0" prefWidth="203.0" text="hay nhap thong tin" GridPane.columnSpan="2" />
+      <Label prefHeight="17.0" prefWidth="43.0" text="name" GridPane.rowIndex="1" />
+      <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="password" GridPane.rowIndex="2" />
+      <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button contentDisplay="RIGHT" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+   </children>
+</GridPane>
