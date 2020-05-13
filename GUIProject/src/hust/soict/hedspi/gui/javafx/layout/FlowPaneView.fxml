@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<FlowPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" rowValignment="BOTTOM" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="hust.soict.hedspi.gui.javafx.layout.MyController">
+   <children>
+      <Button mnemonicParsing="false" text="Button" />
+      <Button mnemonicParsing="false" prefHeight="117.0" prefWidth="197.0" text="Button" />
+      <CheckBox mnemonicParsing="false" text="CheckBox" />
+      <CheckBox mnemonicParsing="false" text="CheckBox" />
+      <ColorPicker />
+      <ComboBox prefWidth="150.0" />
+   </children>
+   <padding>
+      <Insets top="5.0" />
+   </padding>
+</FlowPane>

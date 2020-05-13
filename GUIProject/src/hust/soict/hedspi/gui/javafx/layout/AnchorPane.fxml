@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="396.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+fx:controller="hust.soict.hedspi.gui.javafx.layout.MyController">
+   <children>
+      <Button mnemonicParsing="false" prefHeight="126.0" prefWidth="327.0" text="Button" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="273.0" AnchorPane.topAnchor="50.0" />
+      <Button layoutX="453.0" layoutY="230.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="263.0" layoutY="186.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="379.0" layoutY="15.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="213.0" text="Button" />
+      <Button layoutX="70.0" layoutY="186.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="390.0" layoutY="126.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="126.0" text="Button" />
+   </children>
+</AnchorPane>

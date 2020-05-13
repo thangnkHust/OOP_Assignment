@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="hust.soict.hedspi.gui.javafx.layout.MyController">
+   <children>
+      <Button mnemonicParsing="false" text="Button" />
+      <Button mnemonicParsing="false" prefHeight="92.0" prefWidth="92.0" text="Button" />
+      <RadioButton mnemonicParsing="false" text="RadioButton" />
+      <RadioButton mnemonicParsing="false" text="RadioButton" />
+      <Button mnemonicParsing="false" text="Button" />
+      <Button mnemonicParsing="false" text="Button" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</HBox>
