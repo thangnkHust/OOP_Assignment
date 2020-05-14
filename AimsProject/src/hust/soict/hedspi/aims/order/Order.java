@@ -42,12 +42,14 @@ public class Order {
 //	else if(checkId(media.getId())) {
 //		System.err.println("The media with id: " + media.getId() + " is existed!");
 //	}
-	public void addMedia(Media media) {
+	public boolean addMedia(Media media) {
 		if(itemsOrdered.contains(media)) {
 			System.err.println("The media with title: " + media.getTitle() + " is existed!");
+			return true;
 		}else{
 			itemsOrdered.add(media);
 			System.out.println("***The media with title: " + media.getTitle() + " has been added");
+			return false;
 		}
 	}
 	

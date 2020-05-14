@@ -77,8 +77,8 @@ public class Book extends Media{
 		super(id, title, category, cost);
 	}
 	
-	public Book(String id, String title, float cost, ArrayList<String> authors) {
-		super(id, title, cost);
+	public Book(String id, String title, String category, float cost, ArrayList<String> authors) {
+		super(id, title, category, cost);
 		if(authors.size() != 0) {
 			this.authors = authors;
 		}else {

@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,7 +17,7 @@ public class MenuFrame extends JFrame{
 	JButton deleteButton = new JButton("Delete item by Id");
 	JButton displayButton =  new JButton("Display the items of list order ");
 	JButton exitButton = new JButton("Exit");
-	private static Order anOrder;
+	public static Order anOrder;
 	
 	public MenuFrame(JFrame frame) {
 		// Draw frame
@@ -33,7 +32,6 @@ public class MenuFrame extends JFrame{
 		setVisible(true);
 		setTitle("Order System");
 		
-//		addExitButton();
 		// Button Create new order
 		createButton.setSize(300, 60);
 		createButton.setLocation(100,20);
