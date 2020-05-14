@@ -1,7 +1,11 @@
 package hust.soict.hedspi.aims;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 //import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
 
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;
@@ -10,85 +14,89 @@ import hust.soict.hedspi.aims.media.disc.Track;
 import hust.soict.hedspi.aims.order.Order;
 import hust.soict.hedspi.aims.thread.MemoryDaemon;
 
-public class Aims {
+public class Aims extends JFrame{
+	public Aims() {
+	}
 	
 	public static void main(String[] args) {
-		// Create new MemoryDaemon object
-//		MemoryDaemon md = new MemoryDaemon();
-//		Thread thread = new	Thread(md);
-//		thread.setDaemon(true);
-//		thread.start();
-		
-		Scanner sc = new Scanner(System.in);
-		int selection;
-		int case1 = 0;
-		Order anOrder = null;
-		do {
-			showMenu();
-			selection = sc.nextInt();
-			switch (selection) {
-			case 1:
-				anOrder = createOrder();
-				case1 = 1;
-				break;
-			case 2:
-				if(case1 == 0) {
-					System.err.println("Hay nhap case 1!");
-					break;
-				}
-				int temp = 0;
-				do {
-					showMenuMedia();
-					temp = sc.nextInt();
-					switch (temp) {
-					case 1:
-						sc.nextLine();
-						addBookToOrder(anOrder);
-						break;
-					case 2:
-						sc.nextLine();
-						addDvdToOrder(anOrder);
-						break;
-					case 3:
-						sc.nextLine();
-						addCdToOrder(anOrder);
-						break;
-					case 0:
-						System.out.println("Exit submenu!");
-						break;
-					default:
-						System.err.println("Error input enter, again!");
-					}
-				} while (temp != 0);
-				break;
-			case 3:
-				if(case1 == 0) {
-					System.err.println("Hay nhap case 1!");
-					break;
-				}
-				sc.nextLine();
-				removeMediaInOrder(anOrder);
-				break;
-			case 4:
-				if(case1 == 0) {
-					System.err.println("Hay nhap case 1!");
-					break;
-				}
-				if(anOrder.itemsOrdered.isEmpty()) {
-					System.err.println("List of Order is empty!");
-				}else {
-					anOrder.printListOfOrdered();
-				}
-				break;
-			case 0:
-				sc.close();
-				System.out.println("Bye!!!");
-				break;
-			default:
-				System.err.println("Error input enter, again!");
-			}
-		} while (selection != 0);
+//		// Create new MemoryDaemon object
+////		MemoryDaemon md = new MemoryDaemon();
+////		Thread thread = new	Thread(md);
+////		thread.setDaemon(true);
+////		thread.start();
+//		
+//		Scanner sc = new Scanner(System.in);
+//		int selection;
+//		int case1 = 0;
+//		Order anOrder = null;
+//		do {
+//			showMenu();
+//			selection = sc.nextInt();
+//			switch (selection) {
+//			case 1:
+//				anOrder = createOrder();
+//				case1 = 1;
+//				break;
+//			case 2:
+//				if(case1 == 0) {
+//					System.err.println("Hay nhap case 1!");
+//					break;
+//				}
+//				int temp = 0;
+//				do {
+//					showMenuMedia();
+//					temp = sc.nextInt();
+//					switch (temp) {
+//					case 1:
+//						sc.nextLine();
+//						addBookToOrder(anOrder);
+//						break;
+//					case 2:
+//						sc.nextLine();
+//						addDvdToOrder(anOrder);
+//						break;
+//					case 3:
+//						sc.nextLine();
+//						addCdToOrder(anOrder);
+//						break;
+//					case 0:
+//						System.out.println("Exit submenu!");
+//						break;
+//					default:
+//						System.err.println("Error input enter, again!");
+//					}
+//				} while (temp != 0);
+//				break;
+//			case 3:
+//				if(case1 == 0) {
+//					System.err.println("Hay nhap case 1!");
+//					break;
+//				}
+//				sc.nextLine();
+//				removeMediaInOrder(anOrder);
+//				break;
+//			case 4:
+//				if(case1 == 0) {
+//					System.err.println("Hay nhap case 1!");
+//					break;
+//				}
+//				if(anOrder.itemsOrdered.isEmpty()) {
+//					System.err.println("List of Order is empty!");
+//				}else {
+//					anOrder.printListOfOrdered();
+//				}
+//				break;
+//			case 0:
+//				sc.close();
+//				System.out.println("Bye!!!");
+//				break;
+//			default:
+//				System.err.println("Error input enter, again!");
+//			}
+//		} while (selection != 0);
+		new MenuFrame(new JFrame());
 	}
+	
 
 	private static void removeMediaInOrder(Order anOrder) {
 		Scanner sc = new Scanner(System.in);
