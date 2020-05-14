@@ -75,7 +75,16 @@ public class MenuFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(anOrder != null) {
-					
+					String strid = JOptionPane.showInputDialog(null,
+				            "Moi ban nhap ID muon xoa: ",
+				            "Delete ID",
+				            JOptionPane.INFORMATION_MESSAGE);
+					if(anOrder.removeMedia(strid) == true) {
+						JOptionPane.showMessageDialog(null,"Delete Media have ID = "+ strid + " sucessfully");
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Don't exist Media have ID = " + strid,"Warning",JOptionPane.WARNING_MESSAGE);
+					}
 				}else {
 					JOptionPane.showMessageDialog(null,"Please create an order","Warning",JOptionPane.WARNING_MESSAGE);
 				}

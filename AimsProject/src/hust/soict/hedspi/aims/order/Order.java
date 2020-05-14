@@ -68,18 +68,19 @@ public class Order {
 		}
 	}
 	
-	public void removeMedia(String id) {
-		int mark =0;
+	public boolean removeMedia(String id) {
+		boolean mark = false;
 		for(Media media: itemsOrdered) {
 			if(media.getId().equalsIgnoreCase(id)) {
 				removeMedia(media);
-				mark = 1;
+				mark = true;
 				break;
 			}
 		}
-		if(mark == 0) {
+		if(mark == false) {
 			System.err.println("Can't find id");
 		}
+		return mark;
 	}
 	
 	public float totalCost() {
