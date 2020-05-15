@@ -1,14 +1,24 @@
 package hust.soict.hedspi.aims;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
+import hust.soict.hedspi.aims.media.Media;
+import hust.soict.hedspi.aims.media.book.Book;
+import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
 import hust.soict.hedspi.aims.order.Order;
 
 public class MenuFrame extends JFrame{
@@ -100,7 +110,71 @@ public class MenuFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(anOrder != null) {
+					// Create frame of dialog
+					JDialog displayDialog = new JDialog();
+					displayDialog.setSize(600,400);
+					displayDialog.setLayout(null);
+					displayDialog.setResizable(false);
 					
+					Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+					int x = (int) ((dimension.getWidth() - 600))/2;
+					int y = (int) ((dimension.getHeight() - 400))/2;
+					displayDialog.setLocation(x, y);
+					
+					displayDialog.setVisible(false);
+					displayDialog.setModal(true);
+					displayDialog.setTitle("List items of Order");
+					
+					String column_names[]= {"ID","Type","Title","Category","Cost($)"};
+					List<Media> items = new ArrayList<Media>();
+					items = anOrder.itemsOrdered;
+					DefaultTableModel model = new DefaultTableModel(null,column_names); 
+					JTable table = new JTable(model);
+					
+					for(Media media: items) {
+						String typeString ;
+						if(media instanceof Book)
+							typeString = "Book"; 
+						else if (media instanceof DigitalVideoDisc) {
+							typeString = "DVD"; 
+						}
+						else {
+							typeString = "CD";
+						}
+						float cost = media.getCost();
+						model.addRow(new Object[]{media.getId(),typeString,
+								media.getTitle(),media.getCategory(),cost});							
+					}
+					
+					model.addRow(new Object[] {"","","","Total: ",anOrder.totalCost()});
+//					model.addRow(new Object[] {"","","","",});
+					
+					table.setSize(500, 300);
+					table.setLocation(50,30);
+					displayDialog.setLayout(new BorderLayout());
+					displayDialog.add(table.getTableHeader(), BorderLayout.PAGE_START);
+					displayDialog.add(table, BorderLayout.CENTER);					
+					TableColumn column = null;
+					for (int i = 0; i < 5; i++) {
+					    column = table.getColumnModel().getColumn(i);
+					    if (i == 0) {
+					        column.setPreferredWidth(50); 
+					    } 
+					    if (i == 1) {
+					        column.setPreferredWidth(50); 
+					    }
+					    if (i == 2) {
+					        column.setPreferredWidth(200); 
+					    }
+					    if (i == 3) {
+					        column.setPreferredWidth(150); 
+					    }
+					    if (i == 4) {
+					        column.setPreferredWidth(50); 
+					    }
+					    
+					}
+					displayDialog.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null,"Please create an order","Warning",JOptionPane.WARNING_MESSAGE);
 				}
