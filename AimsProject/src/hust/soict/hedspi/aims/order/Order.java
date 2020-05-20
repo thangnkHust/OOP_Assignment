@@ -134,12 +134,12 @@ public class Order {
 		return false;
 	}
 	
-//	public Media getALuckyItem() {
-//		double rand = Math.random();
-//		rand *= itemsOrdered.size();
-//		int item = (int)rand;
-//		itemsOrdered.get(item).setCost(0.0f);
-//		return itemsOrdered.get(item);
-//	}
+	public Media getALuckyItem() {
+		double rand = Math.random();
+		rand *= itemsOrdered.size();
+		int item = (int)rand;
+		System.out.println( itemsOrdered.get(item).getCost());
+		return itemsOrdered.get(item);
+	}
 	
 }

@@ -128,6 +128,7 @@ public class MenuFrame extends JFrame{
 					String column_names[]= {"ID","Type","Title","Category","Cost($)"};
 					List<Media> items = new ArrayList<Media>();
 					items = anOrder.itemsOrdered;
+					java.util.Collections.sort(items);
 					DefaultTableModel model = new DefaultTableModel(null,column_names); 
 					JTable table = new JTable(model);
 					

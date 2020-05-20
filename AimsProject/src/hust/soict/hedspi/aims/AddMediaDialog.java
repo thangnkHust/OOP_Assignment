@@ -176,17 +176,20 @@ public class AddMediaDialog {
 							int result = JOptionPane.showConfirmDialog(null,"Ban co muon phat DVD ?","Play",
 									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 							if(result == JOptionPane.YES_OPTION) {
-								String message = "Playing DVD: " +  dvdDialog.getTitle() + "\n";
-								message += "DVD length: " + length;
-								JOptionPane.showMessageDialog(null, message);											
-							}
-							if(MenuFrame.anOrder.addMedia(dvd) == true) {
-								JOptionPane.showMessageDialog(null,"DVD have been existed\nCan't add into Order",
-										"Warning",JOptionPane.WARNING_MESSAGE);
-							}
-							else {
-								JOptionPane.showMessageDialog(null,"The DVD added");
-//								MenuFrame.anOrder.printListOfOrdered();
+								try {
+									dvd.play();
+									if(MenuFrame.anOrder.addMedia(dvd) == true) {
+										JOptionPane.showMessageDialog(null,"DVD have been existed\nCan't add into Order",
+												"Warning",JOptionPane.WARNING_MESSAGE);
+									}
+									else {
+										JOptionPane.showMessageDialog(null,"The DVD added");
+//										MenuFrame.anOrder.printListOfOrdered();
+									}
+								} catch (PlayerException e2) {
+									JOptionPane.showMessageDialog(null, e2.getMessage() + "\n" + e2.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+									e2.printStackTrace();
+								}										
 							}
 						}
 					}
@@ -261,22 +264,20 @@ public class AddMediaDialog {
 								int result = JOptionPane.showConfirmDialog(null,"Ban co muon phat CD ?","Play",
 										JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 								if(result == JOptionPane.YES_OPTION) {
-									List<Track> tracks = cd.getTracks();
-									String message = "Playing TrackList: "+ cdDialog.getTitle() + "\n";
-									message += "Tracklist length: "+ cd.getLength() + "\n";
-									for (Track track: tracks) {
-										message += "Playing Track: " + track.getTitle()+ "\n";
-										message += "Track length: "+ track.getLength()+ "\n";
+									try {
+										cd.play();
+										if(MenuFrame.anOrder.addMedia(cd) == true) {
+											JOptionPane.showMessageDialog(null,"CD have been existed\nCan't add into Order",
+													"Warning",JOptionPane.WARNING_MESSAGE);
+										}
+										else {
+											JOptionPane.showMessageDialog(null,"The CD added");
+//											MenuFrame.anOrder.printListOfOrdered();
+										}
+									} catch (PlayerException e2) {
+										JOptionPane.showMessageDialog(null, e2.getMessage() + "\n" + e2.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
+										e2.printStackTrace();
 									}
-									JOptionPane.showMessageDialog(null, message);
-								}
-								if(MenuFrame.anOrder.addMedia(cd) == true) {
-									JOptionPane.showMessageDialog(null,"CD have been existed\nCan't add into Order",
-											"Warning",JOptionPane.WARNING_MESSAGE);
-								}
-								else {
-									JOptionPane.showMessageDialog(null,"The CD added");
-//									MenuFrame.anOrder.printListOfOrdered();
 								}
 							}
 						}

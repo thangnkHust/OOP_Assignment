@@ -146,7 +146,7 @@ public class Aims extends JFrame{
 			switch (ask) {
 			case "yes":
 				System.out.println("===============================");
-				cd.play();
+//				cd.play();
 				System.out.println("===============================");
 				break;
 			case "no":
@@ -181,7 +181,11 @@ public class Aims extends JFrame{
 			switch (ask) {
 			case "yes":
 				System.out.println("===============================");
-				dvd.play();
+				try {
+					dvd.play();
+				} catch (PlayerException e) {
+					System.err.println(e.getMessage());
+				}
 				System.out.println("===============================");
 				break;
 			case "no":

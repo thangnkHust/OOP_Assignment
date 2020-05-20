@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import hust.soict.hedspi.aims.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;
@@ -120,7 +121,11 @@ public class TestMediaCompareTo {
 			switch (ask) {
 			case "yes":
 				System.out.println("===============================");
-				dvd.play();
+				try {
+					dvd.play();
+				} catch (PlayerException e) {
+					System.out.println(e.getMessage());
+				}
 				System.out.println("===============================");
 				break;
 			case "no":
