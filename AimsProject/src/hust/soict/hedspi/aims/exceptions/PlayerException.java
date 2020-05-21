@@ -1,4 +1,4 @@
-package hust.soict.hedspi.aims;
+package hust.soict.hedspi.aims.exceptions;
 
 public class PlayerException extends Exception{
 

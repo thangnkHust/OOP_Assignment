@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+import hust.soict.hedspi.aims.exceptions.CreateOrderException;
+import hust.soict.hedspi.aims.exceptions.PlayerException;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;
 import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
@@ -229,10 +231,14 @@ public class Aims extends JFrame{
 	}
 
 	private static Order createOrder() {
-		Order anOrder;
-		anOrder = Order.createdOrder();
-		System.out.println("***Creat new order successfully!");
-		return anOrder;
+		try {
+			Order anOrder;
+			anOrder = Order.createdOrder();
+			System.out.println("***Creat new order successfully!");
+			return anOrder;
+		} catch (CreateOrderException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	// Maintain menu

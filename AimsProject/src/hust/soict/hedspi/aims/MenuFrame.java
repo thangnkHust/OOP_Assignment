@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import hust.soict.hedspi.aims.exceptions.CreateOrderException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
@@ -49,12 +50,12 @@ public class MenuFrame extends JFrame{
 		createButton.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {				
-				anOrder = Order.createdOrder();
-				if (anOrder != null)
+			public void actionPerformed(ActionEvent e) {	
+				try {
+					anOrder = Order.createdOrder();
 					JOptionPane.showMessageDialog(null,"Create new Order successfully");
-				else {
-					JOptionPane.showMessageDialog(null,"The limitted orders is almost full","Warning",JOptionPane.WARNING_MESSAGE);
+				} catch (CreateOrderException e2) {
+					JOptionPane.showMessageDialog(null, e2.getMessage(),"Warning",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

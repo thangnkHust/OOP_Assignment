@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import hust.soict.hedspi.aims.PlayerException;
+import hust.soict.hedspi.aims.exceptions.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;

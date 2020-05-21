@@ -3,8 +3,6 @@ package hust.soict.hedspi.aims.media;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;
 import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
-import sun.tools.java.ClassType;
-import sun.tools.tree.ThisExpression;
 
 public abstract class Media implements Comparable<Media>{
 	protected String title;
@@ -40,11 +38,14 @@ public abstract class Media implements Comparable<Media>{
 	}
 	
 	public boolean equals(Object temp) throws NullPointerException, ClassCastException{
-//		Media media = (Media)temp;
 		if(temp != null) {
-			if(this.getTitle().equalsIgnoreCase( ((Media)temp).getTitle() ) && this.getCost() == ((Media)temp).getCost())
-				return true;
-			return false;
+			if(temp instanceof Media) {
+				if(this.getTitle().equalsIgnoreCase( ((Media)temp).getTitle() ) && this.getCost() == ((Media)temp).getCost())
+					return true;
+				return false;				
+			}else {
+				throw new ClassCastException("ERROR: Object casting");
+			}
 		}else {
 			throw new NullPointerException("ERROR: Null pointerexception");
 		}

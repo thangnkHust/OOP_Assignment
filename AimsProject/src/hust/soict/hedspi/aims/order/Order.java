@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import hust.soict.hedspi.aims.exceptions.AddMediaException;
+import hust.soict.hedspi.aims.exceptions.CreateOrderException;
+import hust.soict.hedspi.aims.exceptions.InputException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;
@@ -12,9 +15,9 @@ import hust.soict.hedspi.aims.utils.MyDate;
 
 public class Order {
 	public static final int MAX_NUMBER_ORDERS = 10;
-	
 	public static final int MAX_LIMITTED_ORDERS = 5;
 	private static int nbOrders = 0;
+	
 	
 	private MyDate dateOrdered = new MyDate();
 	
@@ -29,33 +32,36 @@ public class Order {
 	}
 	
 	// call constructor 
-	public static Order createdOrder() {
+	public static Order createdOrder() throws CreateOrderException{
 		System.out.println("thread order");
 		if(nbOrders < MAX_LIMITTED_ORDERS) {
 			Order objOrder = new Order();
 			return objOrder;
 		}else {
 			System.err.println("The limitted orders is almost full!");
-			return null;
+			throw new CreateOrderException("The limitted orders is almost full!");
 		}
 	}
 //	else if(checkId(media.getId())) {
 //		System.err.println("The media with id: " + media.getId() + " is existed!");
 //	}
-	public boolean addMedia(Media media) {
+	public void addMedia(Media media) throws AddMediaException{
 		if(itemsOrdered.contains(media)) {
 			System.err.println("The media with title: " + media.getTitle() + " is existed!");
-			return true;
+			throw new AddMediaException("The media with title: " + media.getTitle() + " is existed!\nCan't add into Order");
 		}else{
 			itemsOrdered.add(media);
 			System.out.println("***The media with title: " + media.getTitle() + " has been added");
-			return false;
 		}
 	}
 	
 	public void addMedia(Media... mediaList) {
 		for(int i = 0; i < mediaList.length; i++) {
-			addMedia(mediaList[i]);
+			try {
+				addMedia(mediaList[i]);
+			} catch (AddMediaException e) {
+				System.err.println(e.getMessage());
+			}
 		}
 	}
 	

@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import hust.soict.hedspi.aims.exceptions.InputException;
+import hust.soict.hedspi.aims.exceptions.PlayerException;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.CompactDisc;
 import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
@@ -98,24 +100,18 @@ public class AddMediaDialog {
 					public void actionPerformed(ActionEvent e) {
 						// System.out.println("OKIE Book");
 						bookDialog.setVisible(false);
-						float i = bookMedia.getCost();
-						if(i == -1 || bookMedia.isEmpty()) {
-							JOptionPane.showMessageDialog(null,"Khong the them vao Order\nBan nhap sai dinh dang\nCac truong ID, Title, Category, Code khong the trong","Warning",JOptionPane.WARNING_MESSAGE);
-						}else {
+						try {
+							float i = bookMedia.getCost();
 							String[] authors = authorField.getText().split(",");
 							ArrayList<String> listauthor = new ArrayList<String>();
 							for(String test: authors) {
 								listauthor.add(test);
 							}
 							Book book = new Book(bookMedia.getId(), bookMedia.getTitle(), bookMedia.getCategory(), i, listauthor);
-							if(MenuFrame.anOrder.addMedia(book) == true) {
-								JOptionPane.showMessageDialog(null,"Book have been existed\nCan't add into Order",
-										"Warning",JOptionPane.WARNING_MESSAGE);
-							}
-							else {
-								JOptionPane.showMessageDialog(null,"The Book added");
-//								MenuFrame.anOrder.printListOfOrdered();
-							}
+							MenuFrame.anOrder.addMedia(book);
+							JOptionPane.showMessageDialog(null,"The Book added");
+						} catch (Exception e2) {
+							JOptionPane.showMessageDialog(null, e2.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -161,40 +157,24 @@ public class AddMediaDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						dvdDialog.setVisible(false);
-						float i = dvdMedia.getCost();
-						int length;
 						try {
-							length = Integer.parseInt(textField.getText());
-						} catch (Exception e2) {
-							length = -1;
-						}
-						if(i == -1 || length == -1 || dvdMedia.isEmpty()) {
-							JOptionPane.showMessageDialog(null,"Khong the them vao Order\nBan nhap sai dinh dang\nCac truong ID, Title, Category, Code khong the trong","Warning",JOptionPane.WARNING_MESSAGE);
-						}else {
+							float i = dvdMedia.getCost();
+							int length = Integer.parseInt(textField.getText());
 							String director = directorField.getText();
 							DigitalVideoDisc dvd = new DigitalVideoDisc(dvdMedia.getId(), dvdMedia.getTitle(), dvdMedia.getCategory(), length, director, i);
+							dvd.play();
+							MenuFrame.anOrder.addMedia(dvd);
 							int result = JOptionPane.showConfirmDialog(null,"Ban co muon phat DVD ?","Play",
 									JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 							if(result == JOptionPane.YES_OPTION) {
-								try {
-									dvd.play();
-									if(MenuFrame.anOrder.addMedia(dvd) == true) {
-										JOptionPane.showMessageDialog(null,"DVD have been existed\nCan't add into Order",
-												"Warning",JOptionPane.WARNING_MESSAGE);
-									}
-									else {
-										JOptionPane.showMessageDialog(null,"The DVD added");
-//										MenuFrame.anOrder.printListOfOrdered();
-									}
-								} catch (PlayerException e2) {
-									JOptionPane.showMessageDialog(null, e2.getMessage() + "\n" + e2.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-									e2.printStackTrace();
-								}										
+								JOptionPane.showMessageDialog(null, "Playing DVD: " + dvd.getTitle() + "\nDVD length: " + dvd.getLength());								
 							}
+							JOptionPane.showMessageDialog(null,"The DVD added");
+						} catch (Exception e2) {
+							JOptionPane.showMessageDialog(null, e2.getMessage() + "\n" + e2.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
-				
 				dvdDialog.setVisible(true);
 				
 			}
@@ -241,10 +221,8 @@ public class AddMediaDialog {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						cdDialog.setVisible(false);
-						float i = cdMedia.getCost();
-						if(i == -1 || cdMedia.isEmpty()) {
-							JOptionPane.showMessageDialog(null,"Khong the them vao Order\nBan nhap sai dinh dang\nCac truong ID, Title, Category, Code khong the trong","Warning",JOptionPane.WARNING_MESSAGE);
-						}else {
+						try {
+							float i = cdMedia.getCost();
 							CompactDisc cd = new CompactDisc(cdMedia.getId(), cdMedia.getTitle(), cdMedia.getCategory(), textField.getText(), i);
 							String[] outString = trackField.getText().split(",+");
 							for(String out : outString) {
@@ -261,25 +239,17 @@ public class AddMediaDialog {
 								JOptionPane.showMessageDialog(null,"Khong the them vao Order\nBan nhap sai dinh dang\nCac truong ID, Title, Category, Code, Tracks khong the trong","Warning",
 										JOptionPane.WARNING_MESSAGE);
 							}else {
+								cd.play();
+								MenuFrame.anOrder.addMedia(cd);
 								int result = JOptionPane.showConfirmDialog(null,"Ban co muon phat CD ?","Play",
 										JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 								if(result == JOptionPane.YES_OPTION) {
-									try {
-										cd.play();
-										if(MenuFrame.anOrder.addMedia(cd) == true) {
-											JOptionPane.showMessageDialog(null,"CD have been existed\nCan't add into Order",
-													"Warning",JOptionPane.WARNING_MESSAGE);
-										}
-										else {
-											JOptionPane.showMessageDialog(null,"The CD added");
-//											MenuFrame.anOrder.printListOfOrdered();
-										}
-									} catch (PlayerException e2) {
-										JOptionPane.showMessageDialog(null, e2.getMessage() + "\n" + e2.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
-										e2.printStackTrace();
-									}
+									JOptionPane.showMessageDialog(null, cd.message);
 								}
+								JOptionPane.showMessageDialog(null,"The CD added");
 							}
+						} catch (Exception e2) {
+							JOptionPane.showMessageDialog(null, e2.getMessage() + "\n" + e2.toString(), "ERROR", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
@@ -288,7 +258,7 @@ public class AddMediaDialog {
 		});
 	}
 	
-	public class MediaDialog {
+	public class MediaDialog{
 		JLabel idJLabel = new JLabel("ID");
 		JLabel costJLabel = new JLabel("Cost");
 		JLabel categoryJLabel = new JLabel("Category");
@@ -304,20 +274,29 @@ public class AddMediaDialog {
 		public String getId() {
 			return idField.getText();
 		}
-		public Float getCost() {
+		public Float getCost() throws InputException{
 			float f;
 			try {
 				f = Float.parseFloat(costField.getText());
+				return f;
 			} catch (Exception e) {
-				f = -1;
+				throw new InputException(e.getMessage() + "\nError Input");
 			}
-			return f;
 		}
-		public String getCategory() {
-			return cateField.getText();
+		public String getCategory() throws InputException{
+			if(cateField.getText() != "") {
+				return cateField.getText();
+			}else {
+				throw new InputException("ERROR: Catagory Field is empty");
+			}
+
 		}
-		public String getTitle() {
-			return titleField.getText();
+		public String getTitle() throws InputException{
+			if(titleField.getText() != "") {
+				return titleField.getText();
+			}else {
+				throw new InputException("ERROR: Title Field is empty");
+			}
 		}
 		
 		public MediaDialog(JDialog mediaDialog) {
