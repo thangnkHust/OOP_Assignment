@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import hust.soict.hedspi.aims.exceptions.CreateOrderException;
+import hust.soict.hedspi.aims.exceptions.LuckyItemException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.book.Book;
 import hust.soict.hedspi.aims.media.disc.DigitalVideoDisc;
@@ -132,7 +133,13 @@ public class MenuFrame extends JFrame{
 					java.util.Collections.sort(items);
 					DefaultTableModel model = new DefaultTableModel(null,column_names); 
 					JTable table = new JTable(model);
-					
+					float cost = 0;
+					Media temp = null;
+					try {
+						 temp = anOrder.getALuckyItem();
+					} catch (LuckyItemException e2) {
+						JOptionPane.showMessageDialog(null, e2.getMessage(), "WARNING", JOptionPane.WARNING_MESSAGE);
+					}
 					for(Media media: items) {
 						String typeString ;
 						if(media instanceof Book)
@@ -143,14 +150,17 @@ public class MenuFrame extends JFrame{
 						else {
 							typeString = "CD";
 						}
-						float cost = media.getCost();
-						model.addRow(new Object[]{media.getId(),typeString,
-								media.getTitle(),media.getCategory(),cost});							
+						if(media == temp) {
+							cost = media.getCost();
+							model.addRow(new Object[]{media.getId(),typeString,
+									media.getTitle(),media.getCategory(),0.0});
+						}else {
+							model.addRow(new Object[]{media.getId(),typeString,
+									media.getTitle(),media.getCategory(), media.getCost()});
+						}
 					}
 					
-					model.addRow(new Object[] {"","","","Total: ",anOrder.totalCost()});
-//					model.addRow(new Object[] {"","","","",});
-					
+					model.addRow(new Object[] {"","","","Total: ",anOrder.totalCost() - cost});					
 					table.setSize(500, 300);
 					table.setLocation(50,30);
 					displayDialog.setLayout(new BorderLayout());
