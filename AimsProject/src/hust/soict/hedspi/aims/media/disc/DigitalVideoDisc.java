@@ -1,8 +1,5 @@
 package hust.soict.hedspi.aims.media.disc;
 
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-
 import hust.soict.hedspi.aims.exceptions.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 
